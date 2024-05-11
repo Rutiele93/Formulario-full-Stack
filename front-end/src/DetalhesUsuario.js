@@ -2,9 +2,10 @@ import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const DetalhesUsuario = ({ userDetails }) => {
-  // Verifica se há detalhes do usuário disponíveis
+  // Verifica se há detalhes do usuário disponíve
+  console.log(userDetails);
   if (!userDetails) {
-    return null; // Se não houver detalhes, retorna null para não renderizar nada
+    return <div>Nenhum detalhe de usuário encontrado.</div>;
   }
 
   return (

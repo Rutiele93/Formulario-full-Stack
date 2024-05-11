@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-DesafioSync360Application<desafioSync360>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.formulario.desafioSync360.DesafioSync360Application",
+            "projectName": "desafioSync360",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}

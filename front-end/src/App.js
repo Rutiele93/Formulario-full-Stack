@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react';
 import './App.css';
 
 import Tabela from './Tabela';
-import UserForm from './UserForm'; // Importe o UserForm
+import UserForm from './UserForm'; 
+import  DetalhesUsuario from './DetalhesUsuario'
 
 function App() {
   const [userData, setUserData] = useState([]);
@@ -28,13 +29,15 @@ function App() {
   }, []); // O segundo argumento vazio [] garante que o efeito só seja executado uma vez
 
   return (
-    <div>
-      <UserForm /> {/* Adicione o UserForm aqui */}
+    <div className='corpo'>
+      <UserForm /> 
       {loading ? (
         <p>Carregando...</p>
       ) : (
         <Tabela userData={userData} />
+       
       )}
+       <DetalhesUsuario/>
     </div>
   );
 }

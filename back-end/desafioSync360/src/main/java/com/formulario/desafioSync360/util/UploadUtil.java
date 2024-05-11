@@ -13,7 +13,7 @@ public class UploadUtil {
         }
 
         String nomeArquivo = imagem.getOriginalFilename();
-        String pastaUploadImagem = "C:\\Users\\rutie\\OneDrive\\Documentos\\desenvolvedor - Sync360.io\\formulario\\public\\img";
+        String pastaUploadImagem = "C:\\Users\\rutie\\OneDrive\\Documentos\\Formulario-full-Stack\\front-end\\public\\img";
         File dir = new File(pastaUploadImagem);
         if (!dir.exists()) {
             dir.mkdirs();

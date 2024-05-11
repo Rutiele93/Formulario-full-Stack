@@ -4,8 +4,6 @@ import DetalhesUsuario from './DetalhesUsuario';
 import EditarUser from './EditarUser';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-
-
 const Tabela = () => {
   const [userData, setUserData] = useState([]); // Estado para armazenar os dados dos usuários
   const [editUserId, setEditUserId] = useState(null); // Estado para armazenar o ID do usuário selecionado para edição
@@ -18,6 +16,7 @@ const Tabela = () => {
     const fetchUserData = async () => {
       try {
         const response = await axios.get('http://localhost:8081/listar');
+        console.log(response.data);
         setUserData(response.data);
       } catch (error) {
         console.error('Erro ao buscar usuários:', error);
@@ -65,21 +64,22 @@ const Tabela = () => {
   };
 
   return (
-    <div>
-      <h2>Lista de Usuários</h2>
-      <table>
+    <div className='form contaner'>
+      <p>Lista de Usuários</p>
+      <table className='table'> 
         {/* Cabeçalho da tabela */}
         <thead>
           <tr>
             <th>ID</th>
+            <th>Imagem</th>
             <th>Nome</th>
             <th>Idade</th>
             <th>Rua</th>
             <th>Bairro</th>
             <th>Estado</th>
             <th>Biografia</th>
-            <th>Imagem</th>
-            <th scope="col" className="text-center">Ações</th>
+            
+            <th scope="col-3" className="text-center">Ações</th>
           </tr>
         </thead>
         {/* Corpo da tabela */}
@@ -87,18 +87,18 @@ const Tabela = () => {
           {userData.map(usuario => (
             <tr key={usuario.id}>
               <td>{usuario.id}</td>
+              <td><img src={"../img/" + usuario.imagem} alt={`Imagem de ${usuario.nome}`} /></td>
               <td>{usuario.nome}</td>
               <td>{usuario.idade}</td>
               <td>{usuario.rua}</td>
               <td>{usuario.bairro}</td>
               <td>{usuario.estado}</td>
-              <td>{usuario.biografia}</td>
-              <td><img src={"../img/" + usuario.imagem} alt={`Imagem de ${usuario.nome}`} width="100px" /></td>
-              <td className="text-center">
+              <td>{usuario.biografia}</td>             
+              <td colspan="3">
                 {/* Botões de ação */}
-                <button className="btn btn-warning" onClick={() => handleEditClick(usuario.id)}>Editar</button>
-                <button className="btn btn-danger" onClick={() => handleDeleteClick(usuario.id)}>Excluir</button>
-                <button className="btn btn-success" onClick={() => handleDetailClick(usuario.id)}>Detalhar</button>
+                <button className="editar" onClick={() => handleEditClick(usuario.id)}>Editar</button>
+                <button className="deletar" onClick={() => handleDeleteClick(usuario.id)}>Excluir</button>
+                <button className="detalhar" onClick={() => handleDetailClick(usuario.id)}>Detalhar</button>
               </td>
             </tr>
           ))}
@@ -109,8 +109,11 @@ const Tabela = () => {
         <div className="modal">
           <div className="modal-content">
             <span className="close" onClick={handleCloseModal}>&times;</span>
-            {/* Conteúdo do modal */}
-            <DetalhesUsuario userDetails={userData.find(user => user.id === selectedUserId)} />
+            {/* Verifica se há um ID de usuário selecionado */}
+            {selectedUserId !== null && (
+              /* Busca os detalhes do usuário com o ID selecionado */
+              <DetalhesUsuario userDetails={userData.find(user => user.id === selectedUserId)} />
+            )}
           </div>
         </div>
       )}
