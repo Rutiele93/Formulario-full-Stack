@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
-
-import Tabela from './Tabela';
-import UserForm from './UserForm'; 
-import  DetalhesUsuario from './DetalhesUsuario'
+import Tabela from './pages/Tabela';
+import UserForm from './pages/UserForm'; 
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
   const [userData, setUserData] = useState([]);
@@ -29,7 +28,7 @@ function App() {
   }, []); // O segundo argumento vazio [] garante que o efeito só seja executado uma vez
 
   return (
-    <div className='corpo'>
+    <div className='corpo'>      
       <UserForm /> 
       {loading ? (
         <p>Carregando...</p>
@@ -37,7 +36,7 @@ function App() {
         <Tabela userData={userData} />
        
       )}
-       <DetalhesUsuario/>
+      
     </div>
   );
 }
